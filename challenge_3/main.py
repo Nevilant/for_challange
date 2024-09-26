@@ -41,3 +41,6 @@ def test(driver):
     button_cart.click()
     delete_button: WebElement = WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.LINK_TEXT, 'Delete')))
     delete_button.click()
+    all_elements: list[WebElement] = WebDriverWait(driver, 5).until(
+        EC.visibility_of_any_elements_located((By.LINK_TEXT, 'Delete')))
+    assert len(all_elements) == 1, "Должен остаться только один товар"
